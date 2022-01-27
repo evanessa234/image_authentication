@@ -1,1 +1,3 @@
-
+Issues:
+1. Watermark distorted after encryption decryption
+2. Only works for grayscale watermark.
