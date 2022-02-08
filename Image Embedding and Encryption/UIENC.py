@@ -14,29 +14,31 @@ def choose_File_1():
 def choose_File_2():
     filename_2 = filedialog.askopenfilename()
     entry2.insert(0,str(filename_2))
+    
+    
+def image_resize(img, size):
+    image = Image.open(img).resize((size, size), 1)
+    image = image.convert('L')
+    image.save("dataset//cover_img_512.jpg")
+    absPath = os.path.abspath("dataset//cover_img_512.jpg")
+    image_array = np.array(image.getdata(), dtype=float).reshape((size, size))
+    return absPath, image_array
 
-def performWatermarkEmbedding():
+def performWatermarkEmbedding():    
     filename_1 = entry1.get()
     filename_2 = entry2.get()
-    im1 = np.array(Image.open(filename_1))
+    img, im1 = image_resize(filename_1, 512)
     im2 = np.array(Image.open(filename_2))
     if (len(im1.shape)==2 & len(im2.shape)==2) :
-         resImage = em.DWT_GRAY_HL_EMBED(filename_1, filename_2)
+         resImage = em.DWT_GRAY_HL_EMBED(img, filename_2)
          entry3.insert(0,resImage)
     elif (len(im1.shape)==2 & len(im2.shape)==3) :
-         resImage = em.DWT_GRAY_HL_EMBED(filename_1, filename_2)
+         resImage = em.DWT_GRAY_HL_EMBED(img, filename_2)
          entry3.insert(0,resImage)
     elif (len(im1.shape)==3 & len(im2.shape)==3) :
-         resImage = em.DWT_RGB_HL_EMBED(filename_1, filename_2)
+         resImage = em.DWT_RGB_HL_EMBED(img, filename_2)
          entry3.insert(0,resImage)
-    
-    
-    #print(filename)
-
-#def return_original_images():
- #   filename_4 = entry1.get()
-  #  filename_5 = entry2.get()
-   # return filename_4,filename_5
+        
 
 def choose_File_3():
     filename_3 = filedialog.askopenfilename()
