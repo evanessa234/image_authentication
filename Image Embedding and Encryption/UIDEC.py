@@ -24,10 +24,8 @@ def choose_File_2():
 
 def performWatermarkExtracting():
     filename_2 = entry4.get()
-    #cover_image = "images\\eye_512.png"
-    #watermark = "images\\hospital1.jpg"
-    cover_image = "images\\x-ray_512.jpg"
-    watermark = "images\\lena_gray_512.jpg"
+    cover_image = "dataset\\cover_img_512.jpg"
+    watermark = "images\\hospital_gray.jpg"
     im1 = np.array(Image.open(cover_image))
     im2 = np.array(Image.open(watermark))
     if (len(im1.shape)==2 & len(im2.shape)==2) :
@@ -38,6 +36,9 @@ def performWatermarkExtracting():
          #entry3.insert(0,resImage)
     elif (len(im1.shape)==3 & len(im2.shape)==3) :
          resImage = ex.DWT_RGB_HL_EXTRACT(cover_image, watermark, filename_2)
+         #entry3.insert(0,resImage)
+    else:
+         resImage = ex.DWT_GRAY_HL_EXTRACT(cover_image, watermark, filename_2)
          #entry3.insert(0,resImage)
     entry5.insert(0,resImage)
     #print(filename)
