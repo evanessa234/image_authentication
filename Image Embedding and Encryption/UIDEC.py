@@ -32,13 +32,13 @@ def performWatermarkExtracting():
     im2 = np.array(Image.open(watermark))
     if (len(im1.shape)==2 & len(im2.shape)==2) :
          resImage = ex.DWT_GRAY_HL_EXTRACT(cover_image, watermark, filename_2)
-         entry3.insert(0,resImage)
+         #entry3.insert(0,resImage)
     elif (len(im1.shape)==2 & len(im2.shape)==3) :
          resImage = ex.DWT_GRAY_HL_EXTRACT(cover_image, watermark, filename_2)
-         entry3.insert(0,resImage)
+         #entry3.insert(0,resImage)
     elif (len(im1.shape)==3 & len(im2.shape)==3) :
          resImage = ex.DWT_RGB_HL_EXTRACT(cover_image, watermark, filename_2)
-         entry3.insert(0,resImage)
+         #entry3.insert(0,resImage)
     entry5.insert(0,resImage)
     #print(filename)
 
