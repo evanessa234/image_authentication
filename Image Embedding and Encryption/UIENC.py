@@ -6,6 +6,8 @@ import Henon_LogisticEncryption as hlE
 from PIL import ImageTk, Image
 from imageio import imread
 import numpy as np
+import cv2
+from time import sleep
 
 def choose_File_1():
     filename_1 = filedialog.askopenfilename()
@@ -14,17 +16,17 @@ def choose_File_1():
 def choose_File_2():
     filename_2 = filedialog.askopenfilename()
     entry2.insert(0,str(filename_2))
-    
-    
-def image_resize(img, size):
-    image = Image.open(img).resize((size, size), 1)
+
+def image_resize(img1,size):
+    image = Image.open(img1).resize((size, size), 1)
     image = image.convert('L')
     image.save("dataset//cover_img_512.jpg")
-    absPath = os.path.abspath("dataset//cover_img_512.jpg")
+    absPath = os.path.abspath("dataset//cover_img_512.jpg") 
     image_array = np.array(image.getdata(), dtype=float).reshape((size, size))
     return absPath, image_array
 
-def performWatermarkEmbedding():    
+def performWatermarkEmbedding():
+    
     filename_1 = entry1.get()
     filename_2 = entry2.get()
     img, im1 = image_resize(filename_1, 512)
@@ -38,7 +40,11 @@ def performWatermarkEmbedding():
     elif (len(im1.shape)==3 & len(im2.shape)==3) :
          resImage = em.DWT_RGB_HL_EMBED(img, filename_2)
          entry3.insert(0,resImage)
-        
+    else:
+         resImage = em.DWT_GRAY_HL_EMBED(img, filename_2)
+         entry3.insert(0,resImage)
+    
+    #print(filename)
 
 def choose_File_3():
     filename_3 = filedialog.askopenfilename()
