@@ -24,6 +24,8 @@ def choose_File_2():
 
 def performWatermarkExtracting():
     filename_2 = entry4.get()
+    #cover_image = "images\\eye_512.png"
+    #watermark = "images\\hospital_rgb.jpg"
     cover_image = "dataset\\cover_img_512.jpg"
     watermark = "images\\hospital_gray.jpg"
     im1 = np.array(Image.open(cover_image))
