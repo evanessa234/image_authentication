@@ -104,7 +104,8 @@ def pixelManipulation2(imageName, key):
                     y = 4*y*(1-y)
                 x_round = round((x*(10**4))%256)
                 y_round = round((y*(10**4))%256)
-                C1 = x_round ^ ((key_list[0]+x_round) % N) ^ ((C1_0 + key_list[1])%N)
+                #xor
+                C1 = x_round ^ ((key_list[0]+x_round) % N) ^ ((C1_0 + key_list[1])%N) 
                 C2 = x_round ^ ((key_list[2]+y_round) % N) ^ ((C2_0 + key_list[3])%N) 
 
                 C = ((key_list[4]+C1) % N) ^ ((key_list[5]+C2) % N) ^ ((key_list[6]+imageMatrix[i][j]) % N) ^ ((C + key_list[7]) % N)
